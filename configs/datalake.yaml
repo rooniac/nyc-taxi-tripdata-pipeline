@@ -1,0 +1,13 @@
+nyc_data:
+  folder_path: data
+
+datalake:
+  endpoint: localhost:9000
+  access_key: minioadmin
+  secret_key: minioadmin123
+  folder_name: batch
+
+  buckets:
+    raw: raw
+    processed: processed
+    sandbox: sandbox

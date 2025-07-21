@@ -1,0 +1,72 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+.eggs/
+
+# Virtual environment
+venv/
+
+# IDEs
+.vscode/
+*.code-workspace
+
+# Env variables
+.env
+
+# Airflow
+airflow/
+# airflow/logs/
+
+# dbt
+dbt_tripdata
+
+# Docker volumes / temp files
+*.bak
+*.tmp
+*.swp
+
+# Data files
+/data
+
+# Build / compiled files
+build/
+dist/
+*.egg
+
+# Configs for log and jars spark
+conf 
+
+# Debezium
+debezium/plugins/
+debezium/configs/config
+debezium/configs/data
+debezium/configs/logs
+
+# EDA
+/eda
+
+# Logs
+logs/
+
+# Pipelines
+/pipelines/data/extract_csv.py
+/pipelines/datalake_to_dw
+
+
+# Temp
+__init__.py
+/docker
+/jars
+/src
+/trino
+/utils
+/README.md
+/log4j2.properties
+/note_schema.txt
+
+
+
