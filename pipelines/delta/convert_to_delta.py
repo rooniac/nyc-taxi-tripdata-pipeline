@@ -2,7 +2,6 @@ import os
 import sys
 from dotenv import load_dotenv
 from pyspark.sql import SparkSession
-from pyspark.sql.utils import AnalysisException
 from pyspark.sql.types import *
 from airflow.models import Variable
 from airflow.hooks.base import BaseHook
@@ -61,10 +60,6 @@ def init_spark(endpoint, access_key, secret_key):
         .config("spark.hadoop.fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem") \
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-        # .config("spark.driver.memory", "2g") \
-        # .config("spark.executor.memory", "2g") \
-        # .config("spark.driver.extraJavaOptions", "-Dlog4j.configurationFile=file:///opt/airflow/log4j2.properties -XX:+PrintGCDetails") \
-        # .config("spark.pyspark.python", "python3")
 
     if os.environ.get('AIRFLOW_HOME'):
         logger.info("Running in Airflow/Docker, using local JARs")
@@ -85,7 +80,6 @@ def init_spark(endpoint, access_key, secret_key):
         logger.info("Running locally, using spark.jars")
 
     spark = builder.getOrCreate()
-    # logger.info(f"Spark classpath: {spark.sparkContext._jsc.sc().conf().get('spark.driver.extraClassPath')}")
     return spark
 
 def cast_to_standard_schema(df):
@@ -103,8 +97,8 @@ def convert_to_delta_for_airflow(**context):
         endpoint = conn.host.replace('http://', '') if conn.host else extra.get('endpoint_url', '').replace('http://', '')
         if not endpoint:
             raise ValueError("MinIO endpoint is not configured in Airflow Connection")
-        access_key = conn.login or "minioadmin"
-        secret_key = conn.password or "minioadmin123"
+        access_key = conn.login 
+        secret_key = conn.password 
         bucket_processed = extra.get('bucket_name', 'processed')
         bucket_sandbox = extra.get('bucket_sandbox', 'sandbox')
         logger.info(f"Using Airflow Connection for MinIO: {endpoint}")
@@ -114,11 +108,11 @@ def convert_to_delta_for_airflow(**context):
         if cfg is None:
             logger.error("Failed to load configuration. Exiting.")
             raise
-        endpoint = get_config_value(cfg, ["datalake", "endpoint"], default="minio:9000")
-        access_key = get_config_value(cfg, ["datalake", "access_key"], default="minioadmin")
-        secret_key = get_config_value(cfg, ["datalake", "secret_key"], default="minioadmin123")
-        bucket_processed = get_config_value(cfg, ["datalake", "buckets", "processed"], default="processed")
-        bucket_sandbox = get_config_value(cfg, ["datalake", "buckets", "sandbox"], default="sandbox")
+        endpoint = get_config_value(cfg, ["datalake", "endpoint"])
+        access_key = get_config_value(cfg, ["datalake", "access_key"])
+        secret_key = get_config_value(cfg, ["datalake", "secret_key"])
+        bucket_processed = get_config_value(cfg, ["datalake", "buckets", "processed"])
+        bucket_sandbox = get_config_value(cfg, ["datalake", "buckets", "sandbox"])
 
     spark = init_spark(endpoint, access_key, secret_key)
     minio_client = MinIOClient(endpoint, access_key, secret_key)
@@ -155,14 +149,6 @@ def convert_to_delta_for_airflow(**context):
 
     for object_name in new_files:
         file_name = os.path.basename(object_name)
-        # year or streaming
-        # try:
-        #     year = file_name.split("_")[-1].split("-")[0] # green_tripdata_2025-01.parquet -> 2025
-        #     delta_path = f"s3a://{bucket_sandbox}/batch/{year}/"
-        #     logger.info(f"Processing regular file: {file_name}...")
-        # except (IndexError, ValueError):
-        #     delta_path = f"s3a://{bucket_sandbox}/batch/streaming/"
-        #     logger.info(f"Processing streaming file: {file_name}")
         if "tripdata" in file_name and file_name.endswith(".parquet"):
             year = file_name.split("_")[-1].split("-")[0]        
             delta_path = f"s3a://{bucket_sandbox}/batch/{year}/"

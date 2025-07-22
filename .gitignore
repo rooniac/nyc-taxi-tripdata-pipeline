@@ -18,7 +18,7 @@ venv/
 .env
 
 # Airflow
-airflow/
+airflow/plugins
 # airflow/logs/
 
 # dbt
