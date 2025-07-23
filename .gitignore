@@ -19,10 +19,6 @@ venv/
 
 # Airflow
 airflow/plugins
-# airflow/logs/
-
-# dbt
-# dbt_tripdata
 
 # Docker volumes / temp files
 *.bak

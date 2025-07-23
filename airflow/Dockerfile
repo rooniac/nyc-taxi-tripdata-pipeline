@@ -20,7 +20,8 @@ RUN pip install --no-cache-dir \
     requests==2.31.0 \
     psycopg2-binary==2.9.6 \
     pyspark==3.5.6 \
-    s3fs==2023.12.2
+    s3fs==2023.12.2 \
+    dbt-postgres
 
 WORKDIR /opt/airflow
 

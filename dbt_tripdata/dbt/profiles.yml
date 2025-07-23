@@ -1,0 +1,12 @@
+dbt_tripdata:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: nyc_taxi_db
+      schema: production
+      threads: 4
