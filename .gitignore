@@ -22,7 +22,7 @@ airflow/plugins
 # airflow/logs/
 
 # dbt
-dbt_tripdata
+# dbt_tripdata
 
 # Docker volumes / temp files
 *.bak
@@ -54,7 +54,6 @@ logs/
 
 # Pipelines
 /pipelines/data/extract_csv.py
-# /pipelines/datalake_to_dw
 
 
 # Temp
