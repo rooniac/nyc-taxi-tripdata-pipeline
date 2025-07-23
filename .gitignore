@@ -22,7 +22,7 @@ airflow/plugins
 # airflow/logs/
 
 # dbt
-dbt_tripdata
+# dbt_tripdata
 
 # Docker volumes / temp files
 *.bak

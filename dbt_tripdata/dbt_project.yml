@@ -1,0 +1,26 @@
+name: "dbt_tripdata"
+version: "1.0.0"
+config-version: 2
+
+profile: "dbt_tripdata"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_tripdata:
+    production:
+      +materialized: table
+    staging:
+      +schema: staging
+
+seeds:
+  dbt_tripdata:

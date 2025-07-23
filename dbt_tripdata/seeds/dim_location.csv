@@ -1,0 +1,264 @@
+location_id,borough,zone
+1,EWR,Newark Airport
+2,Queens,Jamaica Bay
+3,Bronx,Allerton
+4,Manhattan,Alphabet City
+5,Staten Island,Arden Heights
+6,Staten Island,Arrochar
+7,Queens,Astoria
+8,Queens,Astoria Park
+9,Queens,Auburndale
+10,Queens,Baisley Park
+11,Brooklyn,Bath Beach
+12,Manhattan,Battery Park
+13,Manhattan,Battery Park City
+14,Brooklyn,Bay Ridge
+15,Queens,Bay Terrace
+16,Queens,Bayside
+17,Brooklyn,Bedford
+18,Bronx,Bedford Park
+19,Queens,Bellerose
+20,Bronx,Belmont
+21,Brooklyn,Bensonhurst East
+22,Brooklyn,Bensonhurst West
+23,Staten Island,Bloomfield
+24,Manhattan,Bloomingdale
+25,Brooklyn,Boerum Hill
+26,Brooklyn,Borough Park
+27,Queens,Breezy Point
+28,Queens,Briarwood
+29,Brooklyn,Brighton Beach
+30,Queens,Broad Channel
+31,Bronx,Bronx Park
+32,Bronx,Bronxdale
+33,Brooklyn,Brooklyn Heights
+34,Brooklyn,Brooklyn Navy Yard
+35,Brooklyn,Brownsville
+36,Brooklyn,Bushwick North
+37,Brooklyn,Bushwick South
+38,Queens,Cambria Heights
+39,Brooklyn,Canarsie
+40,Brooklyn,Carroll Gardens
+41,Manhattan,Central Harlem
+42,Manhattan,Central Harlem North
+43,Manhattan,Central Park
+44,Staten Island,Charleston
+45,Manhattan,Chinatown
+46,Bronx,City Island
+47,Bronx,Claremont
+48,Manhattan,Clinton East
+49,Brooklyn,Clinton Hill
+50,Manhattan,Clinton West
+51,Bronx,Co-Op City
+52,Brooklyn,Cobble Hill
+53,Queens,College Point
+54,Brooklyn,Columbia Street
+55,Brooklyn,Coney Island
+56,Queens,Corona
+57,Queens,Corona
+58,Bronx,Country Club
+59,Bronx,Crotona Park
+60,Bronx,Crotona Park East
+61,Brooklyn,Crown Heights North
+62,Brooklyn,Crown Heights South
+63,Brooklyn,Cypress Hills
+64,Queens,Douglaston
+65,Brooklyn,Downtown Brooklyn
+66,Brooklyn,DUMBO
+67,Brooklyn,Dyker Heights
+68,Manhattan,East Chelsea
+69,Bronx,East Concourse
+70,Queens,East Elmhurst
+71,Brooklyn,East Flatbush
+72,Brooklyn,East Flatbush
+73,Queens,East Flushing
+74,Manhattan,East Harlem North
+75,Manhattan,East Harlem South
+76,Brooklyn,East New York
+77,Brooklyn,East New York
+78,Bronx,East Tremont
+79,Manhattan,East Village
+80,Brooklyn,East Williamsburg
+81,Bronx,Eastchester
+82,Queens,Elmhurst
+83,Queens,Elmhurst
+84,Staten Island,Eltingville
+85,Brooklyn,Erasmus
+86,Queens,Far Rockaway
+87,Manhattan,Financial District North
+88,Manhattan,Financial District South
+89,Brooklyn,Flatbush
+90,Manhattan,Flatiron
+91,Brooklyn,Flatlands
+92,Queens,Flushing
+93,Queens,Flushing Meadows-Corona Park
+94,Bronx,Fordham South
+95,Queens,Forest Hills
+96,Queens,Forest Park
+97,Brooklyn,Fort Greene
+98,Queens,Fresh Meadows
+99,Staten Island,Freshkills Park
+100,Manhattan,Garment District
+101,Queens,Glen Oaks
+102,Queens,Glendale
+103,Manhattan,Governor's Island
+104,Manhattan,Governor's Island
+105,Manhattan,Governor's Island
+106,Brooklyn,Gowanus
+107,Manhattan,Gramercy
+108,Brooklyn,Gravesend
+109,Staten Island,Great Kills
+110,Staten Island,Great Kills Park
+111,Brooklyn,Green-Wood Cemetery
+112,Brooklyn,Greenpoint
+113,Manhattan,Greenwich Village North
+114,Manhattan,Greenwich Village South
+115,Staten Island,Grymes Hill
+116,Manhattan,Hamilton Heights
+117,Queens,Hammels
+118,Staten Island,Heartland Village
+119,Bronx,Highbridge
+120,Manhattan,Highbridge Park
+121,Queens,Hillcrest
+122,Queens,Hollis
+123,Brooklyn,Homecrest
+124,Queens,Howard Beach
+125,Manhattan,Hudson Sq
+126,Bronx,Hunts Point
+127,Manhattan,Inwood
+128,Manhattan,Inwood Hill Park
+129,Queens,Jackson Heights
+130,Queens,Jamaica
+131,Queens,Jamaica Estates
+132,Queens,JFK Airport
+133,Brooklyn,Kensington
+134,Queens,Kew Gardens
+135,Queens,Kew Gardens Hills
+136,Bronx,Kingsbridge Heights
+137,Manhattan,Kips Bay
+138,Queens,LaGuardia Airport
+139,Queens,Laurelton
+140,Manhattan,Lenox Hill East
+141,Manhattan,Lenox Hill West
+142,Manhattan,Lincoln Square East
+143,Manhattan,Lincoln Square West
+144,Manhattan,Little Italy
+145,Queens,Long Island City
+146,Queens,Long Island City
+147,Bronx,Longwood
+148,Manhattan,Lower East Side
+149,Brooklyn,Madison
+150,Brooklyn,Manhattan Beach
+151,Manhattan,Manhattan Valley
+152,Manhattan,Manhattanville
+153,Manhattan,Marble Hill
+154,Brooklyn,Marine Park
+155,Brooklyn,Marine Park
+156,Staten Island,Mariners Harbor
+157,Queens,Maspeth
+158,Manhattan,Meatpacking
+159,Bronx,Melrose South
+160,Queens,Middle Village
+161,Manhattan,Midtown Center
+162,Manhattan,Midtown East
+163,Manhattan,Midtown North
+164,Manhattan,Midtown South
+165,Brooklyn,Midwood
+166,Manhattan,Morningside Heights
+167,Bronx,Morrisania
+168,Bronx,Mott Haven
+169,Bronx,Mount Hope
+170,Manhattan,Murray Hill
+171,Queens,Murray Hill-Queens
+172,Staten Island,New Dorp
+173,Queens,North Corona
+174,Bronx,Norwood
+175,Queens,Oakland Gardens
+176,Staten Island,Oakwood
+177,Brooklyn,Ocean Hill
+178,Brooklyn,Ocean Parkway South
+179,Queens,Old Astoria
+180,Queens,Ozone Park
+181,Brooklyn,Park Slope
+182,Bronx,Parkchester
+183,Bronx,Pelham Bay
+184,Bronx,Pelham Bay Park
+185,Bronx,Pelham Parkway
+186,Manhattan,Penn Station
+187,Staten Island,Port Richmond
+188,Brooklyn,Prospect-Lefferts Gardens
+189,Brooklyn,Prospect Heights
+190,Brooklyn,Prospect Park
+191,Queens,Queens Village
+192,Queens,Queensboro Hill
+193,Queens,Queensbridge
+194,Manhattan,Randalls Island
+195,Brooklyn,Red Hook
+196,Queens,Rego Park
+197,Queens,Richmond Hill
+198,Queens,Ridgewood
+199,Bronx,Rikers Island
+200,Bronx,Riverdale
+201,Queens,Rockaway Park
+202,Manhattan,Roosevelt Island
+203,Queens,Rosedale
+204,Staten Island,Rossville
+205,Queens,Saint Albans
+206,Staten Island,Saint George
+207,Queens,Saint Michaels Cemetery
+208,Bronx,Schuylerville
+209,Manhattan,Seaport
+210,Brooklyn,Sheepshead Bay
+211,Manhattan,SoHo
+212,Bronx,Soundview
+213,Bronx,Soundview
+214,Staten Island,South Beach
+215,Queens,South Jamaica
+216,Queens,South Ozone Park
+217,Brooklyn,South Williamsburg
+218,Queens,Springfield Gardens North
+219,Queens,Springfield Gardens South
+220,Bronx,Spuyten Duyvil
+221,Staten Island,Stapleton
+222,Brooklyn,Starrett City
+223,Queens,Steinway
+224,Manhattan,Stuy Town
+225,Brooklyn,Stuyvesant Heights
+226,Queens,Sunnyside
+227,Brooklyn,Sunset Park East
+228,Brooklyn,Sunset Park West
+229,Manhattan,Sutton Place
+230,Manhattan,Times Sq
+231,Manhattan,TriBeCa
+232,Manhattan,Two Bridges
+233,Manhattan,UN
+234,Manhattan,Union Sq
+235,Bronx,University Heights
+236,Manhattan,Upper East Side North
+237,Manhattan,Upper East Side South
+238,Manhattan,Upper West Side North
+239,Manhattan,Upper West Side South
+240,Bronx,Van Cortlandt Park
+241,Bronx,Van Cortlandt Village
+242,Bronx,Van Nest
+243,Manhattan,Washington Heights North
+244,Manhattan,Washington Heights South
+245,Staten Island,West Brighton
+246,Manhattan,West Chelsea
+247,Bronx,West Concourse
+248,Bronx,West Farms
+249,Manhattan,West Village
+250,Bronx,Westchester Village
+251,Staten Island,Westerleigh
+252,Queens,Whitestone
+253,Queens,Willets Point
+254,Bronx,Williamsbridge
+255,Brooklyn,Williamsburg (North Side)
+256,Brooklyn,Williamsburg (South Side)
+257,Brooklyn,Windsor Terrace
+258,Queens,Woodhaven
+259,Bronx,Woodlawn
+260,Queens,Woodside
+261,Manhattan,World Trade Center
+262,Manhattan,Yorkville East
+263,Manhattan,Yorkville West
