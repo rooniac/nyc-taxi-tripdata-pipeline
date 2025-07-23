@@ -99,7 +99,7 @@ def convert_to_delta_for_airflow(**context):
             raise ValueError("MinIO endpoint is not configured in Airflow Connection")
         access_key = conn.login 
         secret_key = conn.password 
-        bucket_processed = extra.get('bucket_name', 'processed')
+        bucket_processed = extra.get('bucket_processed', 'processed')
         bucket_sandbox = extra.get('bucket_sandbox', 'sandbox')
         logger.info(f"Using Airflow Connection for MinIO: {endpoint}")
     except Exception as e:
