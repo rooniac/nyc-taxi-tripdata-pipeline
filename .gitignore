@@ -54,7 +54,7 @@ logs/
 
 # Pipelines
 /pipelines/data/extract_csv.py
-/pipelines/datalake_to_dw
+# /pipelines/datalake_to_dw
 
 
 # Temp

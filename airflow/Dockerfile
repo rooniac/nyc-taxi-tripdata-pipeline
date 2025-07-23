@@ -25,4 +25,4 @@ RUN pip install --no-cache-dir \
 WORKDIR /opt/airflow
 
 ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
-ENV PYTHONPATH=/opt/airflow/dags:/opt/airflow/pipelines:/opt/airflow/data:/opt/airflow/configs:/opt/airflow/utils
+ENV PYTHONPATH=/opt/airflow/dags:/opt/airflow/pipelines:/opt/airflow/data:/opt/airflow/configs:/opt/airflow/utils:/opt/airflow/jars
