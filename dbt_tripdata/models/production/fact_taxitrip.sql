@@ -13,7 +13,7 @@ WITH day_part_mapping AS (
 )
 
 SELECT 
-    ROW_NUMBER() OVER () AS trip_id,
+    nextval('production.trip_id_seq') AS trip_id,
     stg.vendorid  AS vendor_key,
     stg.ratecodeid AS rate_code_key,
     stg.payment_type AS payment_type_key,
@@ -38,7 +38,7 @@ FROM {{ source('staging', 'stg_tripdata') }} AS stg
 LEFT JOIN day_part_mapping AS dpm
     ON stg.day_part_id = dpm.label
 WHERE stg.trip_key IS NOT NULL
-
+    AND stg.updated_at IS NOT NULL
 {% if is_incremental() %}
   and stg.updated_at > (SELECT COALESCE(MAX(updated_at), '2023-01-01') FROM {{ this }})
 {% endif %}
