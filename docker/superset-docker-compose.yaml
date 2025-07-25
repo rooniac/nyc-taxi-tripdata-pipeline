@@ -1,0 +1,27 @@
+services:
+  superset:
+    image: apache/superset:latest
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=admin123
+    volumes:
+      - superset_home:/app/superset_home
+    networks:
+      - nyc_network
+    command: >
+      /bin/bash -c "
+        pip install psycopg2-binary &&
+        superset db upgrade &&
+        superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@example.com --password admin123 &&
+        superset init &&
+        gunicorn -w 2 -k sync --timeout 120 -b 0.0.0.0:8088 'superset.app:create_app()'
+      "
+
+volumes:
+  superset_home:
+
+networks:
+  nyc_network:
+    external: true

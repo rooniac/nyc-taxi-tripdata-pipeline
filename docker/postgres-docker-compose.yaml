@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: debezium/postgres:13
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nyc_taxi_db
+    volumes:
+      - docker_pgdata:/var/lib/postgresql/data
+    networks:
+      - nyc_network
+
+volumes:
+  docker_pgdata:
+    external: true
+
+networks:
+  nyc_network:
+    external: true

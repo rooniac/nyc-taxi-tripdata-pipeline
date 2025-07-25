@@ -1,0 +1,83 @@
+services:
+  airflow-webserver:
+    build:
+      context: ../airflow
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully # Chờ init hoàn thành
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres:5432/nyc_taxi_db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__TEST_CONNECTION=True
+      - PYTHONPATH=/opt/airflow:/opt/airflow/dags:/opt/airflow/pipelines:/opt/airflow/data:/opt/airflow/configs:/opt/airflow/utils
+      - JAVA_HOME=/usr/lib/jvm/msopenjdk-11-amd64
+      - PATH=/home/airflow/.local/bin:/usr/lib/jvm/msopenjdk-11-amd64/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
+    volumes:
+      - ../airflow/dags:/opt/airflow/dags
+      - ../airflow/logs:/opt/airflow/logs
+      - ../configs:/opt/airflow/configs
+      - ../data:/opt/airflow/data
+      - ../pipelines:/opt/airflow/pipelines
+      - ../utils:/opt/airflow/utils
+      - ../jars:/opt/airflow/jars
+      - ../dbt_tripdata:/opt/airflow/dbt_tripdata
+    ports:
+      - "8080:8080"
+    command: webserver
+    networks:
+      - nyc_network
+
+  airflow-scheduler:
+    build:
+      context: ../airflow
+      dockerfile: Dockerfile
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres:5432/nyc_taxi_db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - PYTHONPATH=/opt/airflow:/opt/airflow/dags:/opt/airflow/pipelines:/opt/airflow/data:/opt/airflow/configs:/opt/airflow/utils
+      - JAVA_HOME=/usr/lib/jvm/msopenjdk-11-amd64
+      - PATH=/home/airflow/.local/bin:/usr/lib/jvm/msopenjdk-11-amd64/bin:/usr/local/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin
+    volumes:
+      - ../airflow/dags:/opt/airflow/dags
+      - ../airflow/logs:/opt/airflow/logs
+      - ../configs:/opt/airflow/configs
+      - ../data:/opt/airflow/data
+      - ../pipelines:/opt/airflow/pipelines
+      - ../utils:/opt/airflow/utils
+      - ../jars:/opt/airflow/jars
+      - ../dbt_tripdata:/opt/airflow/dbt_tripdata
+    command: scheduler
+    networks:
+      - nyc_network
+
+  airflow-init:
+    build:
+      context: ../airflow
+      dockerfile: Dockerfile
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://postgres:postgres@postgres:5432/nyc_taxi_db
+      - PYTHONPATH=/opt/airflow:/opt/airflow/dags:/opt/airflow/pipelines:/opt/airflow/data:/opt/airflow/configs:/opt/airflow/utils
+      - JAVA_HOME=/usr/lib/jvm/msopenjdk-11-amd64
+    command: >
+      bash -c "airflow db init && airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin"
+    networks:
+      - nyc_network
+
+networks:
+  nyc_network:
+    external: true
