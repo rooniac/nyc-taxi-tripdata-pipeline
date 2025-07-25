@@ -26,7 +26,8 @@ airflow/plugins
 *.swp
 
 # Data files
-/data
+/data/*
+!/data/download_data.py
 
 # Build / compiled files
 build/
@@ -54,11 +55,9 @@ logs/
 
 # Temp
 __init__.py
-/docker
 /jars
 /src
 /trino
-/README.md
 /log4j2.properties
 /note_schema.txt
 
