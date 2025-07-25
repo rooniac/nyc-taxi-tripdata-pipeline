@@ -58,7 +58,6 @@ __init__.py
 /jars
 /src
 /trino
-/utils
 /README.md
 /log4j2.properties
 /note_schema.txt
