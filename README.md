@@ -36,7 +36,7 @@ This project simulates a real-world Data Engineering pipeline for NYC taxi trips
 - **Streaming Ingestion**: Apache Kafka, Debezium (CDC), Spark Structured Streaming
 - **Orchestration**: Apache Airflow
 - **Object Storage**: MinIO (S3-compatible)
-- **Data Lake Format**: Delta Lake + Hive Metastore
+- **Data Lake Format**: Delta Lake (stored in MinIO)
 - **Data Warehouse**: PostgreSQL (with staging and production schemas)
 - **Transformation Layer**: dbt (Data Build Tool)
 - **BI & Visualization**: Apache Superset
@@ -62,7 +62,7 @@ The architecture includes:
 
 ```bash
 .
-    ├── airflow/                                    /* airflow folder /*
+    ├── airflow/                                    /* Airflow-related DAGs and configs /*
     ├── configs/
     │   └── datalake.yaml                           /* config of MinIO /*
     ├── data/                                       /* contain dataset /*
@@ -100,7 +100,7 @@ The architecture includes:
     ├── streaming_processing/
     │    └── streaming_to_datalake.py               /* read data streaming from kafka and push into raw zone MinIO */
     ├── utils/
-    │    ├── postgresql_client.py                   /* PostgreSQL Client: create connect, execute query, get columns in bucket /*
+    │    ├── postgresql_client.py
     │    ├── helper.py
     │    └── minio_utils.py
     ├── .env
@@ -129,7 +129,7 @@ The architecture includes:
     ```
 
 3.  **Setup `.env` file**:
-    Create `.env` base on your infomation that you set in docker (PostgreSQL, Minio, Kafka, ...)
+    Create a `.env` file based on your configuration (PostgreSQL, MinIO, Kafka, etc.)
 
 ### ⚙️ Batch Processing
 
