@@ -44,7 +44,7 @@ This project simulates a real-world Data Engineering pipeline for NYC taxi trips
 
 ## 🧬 Data Flow Architecture
 
-![Data Flow Architecture](./images/dataflow.png)
+![Data Flow Architecture](./images/data_flow.png)
 
 <p align="center">
     <em>Data Flow Architecture</em>
