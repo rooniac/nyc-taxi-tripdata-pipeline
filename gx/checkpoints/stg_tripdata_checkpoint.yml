@@ -1,0 +1,33 @@
+name: stg_tripdata_checkpoint
+config_version: 1.0
+template_name:
+module_name: great_expectations.checkpoint
+class_name: SimpleCheckpoint
+run_name_template: "%Y%m%d-%H%M%S-my-run-name-template"
+expectation_suite_name:
+batch_request: {}
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+  - name: store_evaluation_params
+    action:
+      class_name: StoreEvaluationParametersAction
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+evaluation_parameters: {}
+runtime_configuration: {}
+validations:
+  - batch_request:
+      datasource_name: nyc_taxi_db
+      data_connector_name: default_runtime_data_connector_name
+      data_asset_name: stg_tripdata
+      runtime_parameters:
+        query: "SELECT * FROM staging.stg_tripdata WHERE updated_at > '2025-07-23'"
+      batch_identifiers:
+        default_identifier_name: "validate_recent_data_20250723"
+    expectation_suite_name: stg_tripdata_suite
+profilers: []
+ge_cloud_id:
+expectation_suite_ge_cloud_id:

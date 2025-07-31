@@ -1,0 +1,93 @@
+config_version: 3.0
+
+datasources:
+  nyc_taxi_db:
+    class_name: Datasource
+    module_name: great_expectations.datasource
+    execution_engine:
+      class_name: SqlAlchemyExecutionEngine
+      module_name: great_expectations.execution_engine
+      credentials:
+        host: ${db_host}
+        port: "${db_port}"
+        username: ${db_username}
+        password: ${db_password}
+        database: ${db_database}
+        drivername: postgresql
+    data_connectors:
+      default_runtime_data_connector_name:
+        class_name: RuntimeDataConnector
+        module_name: great_expectations.datasource.data_connector
+        batch_identifiers:
+          - default_identifier_name
+      default_inferred_data_connector_name:
+        class_name: InferredAssetSqlDataConnector
+        module_name: great_expectations.datasource.data_connector
+        include_schema_name: true
+        introspection_directives:
+          schema_name: staging
+      default_configured_data_connector_name:
+        class_name: ConfiguredAssetSqlDataConnector
+        module_name: great_expectations.datasource.data_connector
+        assets:
+          stg_tripdata:
+            class_name: Asset
+            module_name: great_expectations.datasource.data_connector.asset
+            schema_name: staging
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+plugins_directory: plugins/
+
+stores:
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+
+  validations_store:
+    class_name: ValidationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+
+  evaluation_parameter_store:
+    class_name: EvaluationParameterStore
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+      base_directory: checkpoints/
+
+  profiler_store:
+    class_name: ProfilerStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+      base_directory: profilers/
+
+expectations_store_name: expectations_store
+validations_store_name: validations_store
+evaluation_parameter_store_name: evaluation_parameter_store
+checkpoint_store_name: checkpoint_store
+
+data_docs_sites:
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+
+anonymous_usage_statistics:
+  data_context_id: d92c7316-2444-4333-86a7-b32d0ddf2c4d
+  enabled: true
+notebooks:
+include_rendered_content:
+  globally: false
+  expectation_suite: false
+  expectation_validation_result: false
