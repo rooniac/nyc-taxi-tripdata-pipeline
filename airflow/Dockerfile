@@ -21,7 +21,9 @@ RUN pip install --no-cache-dir \
     psycopg2-binary==2.9.6 \
     pyspark==3.5.6 \
     s3fs==2023.12.2 \
-    dbt-postgres
+    dbt-postgres \
+    great_expectations==0.17.21 \
+    sqlalchemy==1.4.54
 
 WORKDIR /opt/airflow
 

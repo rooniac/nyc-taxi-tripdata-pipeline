@@ -7,6 +7,7 @@ datasources:
     execution_engine:
       class_name: SqlAlchemyExecutionEngine
       module_name: great_expectations.execution_engine
+      connection_string: postgresql+psycopg2://${db_username}:${db_password}@${db_host}:${db_port}/${db_database}
       credentials:
         host: ${db_host}
         port: "${db_port}"

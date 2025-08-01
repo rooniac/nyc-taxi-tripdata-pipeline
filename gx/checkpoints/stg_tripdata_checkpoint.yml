@@ -18,16 +18,6 @@ action_list:
       class_name: UpdateDataDocsAction
 evaluation_parameters: {}
 runtime_configuration: {}
-validations:
-  - batch_request:
-      datasource_name: nyc_taxi_db
-      data_connector_name: default_runtime_data_connector_name
-      data_asset_name: stg_tripdata
-      runtime_parameters:
-        query: "SELECT * FROM staging.stg_tripdata WHERE updated_at > '2025-07-23'"
-      batch_identifiers:
-        default_identifier_name: "validate_recent_data_20250723_ver02"
-    expectation_suite_name: stg_tripdata_suite
 profilers: []
 ge_cloud_id:
 expectation_suite_ge_cloud_id:

@@ -2,6 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 from pipelines.datalake_to_dw.processed_to_staging import processed_to_staging_for_airfow
+from pipelines.utils.run_ge_checkpoint import run_ge_checkpoint
 
 default_args = {
     'owner': 'airflow',
@@ -23,4 +24,10 @@ with DAG(
         retries=0,
     )
 
-    load_to_staging
+    run_ge_checkpoint = PythonOperator(
+        task_id='run_ge_checkpoint',
+        python_callable=run_ge_checkpoint,
+        retries=0,
+    )
+
+    load_to_staging >> run_ge_checkpoint

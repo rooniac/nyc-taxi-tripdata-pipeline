@@ -284,7 +284,7 @@ def processed_to_staging_for_airfow(**context):
         if not parquet_files:
             logger.info("No files found in processed bucket.")
             spark.stop()
-            return
+            return {"status": "no_files"}
 
         logger.info(f"Found {len(parquet_files)} parquet files to load.")
         processed_files = spark.read.format("jdbc") \
@@ -302,8 +302,9 @@ def processed_to_staging_for_airfow(**context):
         if not unprocessed_files:
             logger.info("No new files to process.")
             zone_df.unpersist(blocking=True)
-            return True
+            return {"status": "no_new_files"}
 
+        total_rows = 0
         logger.info(f"Processing {len(unprocessed_files)} new parquet files.")
         for object_name in unprocessed_files:
             file_name = os.path.basename(object_name)
@@ -322,6 +323,7 @@ def processed_to_staging_for_airfow(**context):
                 df = add_trip_key(df)
                 
                 count_after = df.count()
+                total_rows += count_after
                 logger.info(f"Rows after processing: {count_after:,} (from {count_before:,})")
                 
                 insert_to_postgres(spark, df, file_name, jdbc_url, pg_schema, pg_table, pg_log_table, pg_user, pg_password)
@@ -337,7 +339,10 @@ def processed_to_staging_for_airfow(**context):
         
         zone_df.unpersist(blocking=True)
         logger.info("All files processed successfully.")
-        return True
+
+        #Push total rows to XCom
+        context['ti'].xcom_push(key='total_rows', value=total_rows)
+        return {"status": "success", "total_row": total_rows}
     
     except Exception as e:
         logger.error(f"Pipeline failed: {str(e)}")
