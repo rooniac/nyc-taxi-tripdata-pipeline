@@ -26,7 +26,7 @@ validations:
       runtime_parameters:
         query: "SELECT * FROM staging.stg_tripdata WHERE updated_at > '2025-07-23'"
       batch_identifiers:
-        default_identifier_name: "validate_recent_data_20250723"
+        default_identifier_name: "validate_recent_data_20250723_ver02"
     expectation_suite_name: stg_tripdata_suite
 profilers: []
 ge_cloud_id:
