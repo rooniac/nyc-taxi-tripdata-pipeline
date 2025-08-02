@@ -25,6 +25,7 @@ This project simulates a real-world Data Engineering pipeline for NYC taxi trips
 - Streaming ingestion using Kafka and Debezium (CDC)
 - Data Lake architecture with raw / processed / sandbox zones
 - ETL with Spark and Delta Lake
+- Data validation with Great Expectations
 - Data transformation with dbt
 - Pipeline orchestration using Apache Airflow
 - Business Intelligence dashboarding using Superset
@@ -38,6 +39,7 @@ This project simulates a real-world Data Engineering pipeline for NYC taxi trips
 - **Object Storage**: MinIO (S3-compatible)
 - **Data Lake Format**: Delta Lake (stored in MinIO)
 - **Data Warehouse**: PostgreSQL (with staging and production schemas)
+- **Data Validation**: Great Expectations
 - **Transformation Layer**: dbt (Data Build Tool)
 - **BI & Visualization**: Apache Superset
 - **Containerization**: Docker
@@ -55,6 +57,7 @@ The architecture includes:
 - Batch ingestion from NYC Trip Record Data `.parquet` files
 - Streaming ingestion via CDC (Debezium -> Kafka -> Spark Streaming)
 - Spark batch jobs to clean and load data from raw -> processed -> sandbox, processed -> staging (PostgreSQL Datawarehouse)
+- Great Expectations to validate data in staging table
 - dbt for transforming staging data to production (star schema)
 - Superset for dashboarding
 
@@ -79,6 +82,13 @@ The architecture includes:
     │   ├── postgres-docker-compose.yaml
     │   ├── stream-docker-compose.yaml
     │   └── superset-docker-compose.yaml
+    ├── gx/
+    │   ├── checkpoints/
+    │       └──  stg_tripdata_checkpoint.yml
+    │   ├── expectations/
+    │       └──  stg_tripdata_suite.json
+    │   ├── .gitignore
+    │   └── great_expectations.yml
     ├── pipelines/                                  /* spark jobs for pipeline /*
     │   ├── data/
     │       └── taxi_zone_lookup.csv
@@ -88,8 +98,10 @@ The architecture includes:
     │       └── convert_to_delta.py
     │   ├── ingest/
     │       └── ingest_to_raw.py
-    │   └── transform/
+    │   ├── transform/
     │       └── transform_data.py
+    │   └── utils/
+    │       └── run_ge_checkpoint.py
     ├── scripts/
     │   ├── create_cdcsource_table_pg.py
     │   ├── create_schema_postgres.py
@@ -263,7 +275,7 @@ The final stage of the batch pipeline leverages **dbt (Data Build Tool)** to tra
     - **DAG 1 – `nyc_taxi_ingest`**: Downloads NYC TLC data and uploads it to the raw zone in MinIO.
     - **DAG 2 – `nyc_taxi_transform`**: Cleans and standardizes raw data, writing to the processed zone.
     - **DAG 3 – `nyc_taxi_convert_delta`**: Converts processed Parquet data into Delta Lake format for sandbox querying (optional).
-    - **DAG 4 – `nyc_taxi_staging`**: Loads processed data into the staging schema of the PostgreSQL warehouse.
+    - **DAG 4 – `nyc_taxi_staging`**: Loads processed data into the staging schema of the PostgreSQL warehouse and validate data using great expectations.
     - **DAG 5 – `nyc_taxi_production`**: Runs dbt models to transform staging tables into a star-schema production layer.
 
     You can trigger these DAGs in sequence to execute the full batch pipeline and observe how data flows through each stage of the architecture.
