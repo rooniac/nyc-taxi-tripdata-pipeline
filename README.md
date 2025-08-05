@@ -2,8 +2,6 @@
 
 An end-to-end Data Engineering project that builds a scalable, modular data pipeline for NYC Yellow and Green Taxi trip data. The system support both **batch** and **streaming** ingestion, applies transformations with **Spark** and **dbt**, stores results in a **Data Lake + Data Warehouse**, and visualize sample insights with **Superset**.
 
-🚧 **This project is still under active development. Features and structure may change.**
-
 ## 📖 Table of Contents
 
 1. [📌 Project Overview](#-project-overview)
@@ -301,3 +299,5 @@ If you would like to see the outcome of pipeline, you can access to PostgreSQL a
 - **NYC TLC Trip Record Data**  
   Open dataset provided by the New York City Taxi and Limousine Commission (TLC), containing detailed trip records for Yellow and Green taxis.  
   📎 Source: [TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+
+🚧 **This project is still under active development. Features and structure may change.**
